@@ -15,10 +15,10 @@ import { TodoModule } from './app/todo/todo.module';
         username: configService.get('DB_USER', 'postgres'),
         password: configService.get('DB_PASSWORD', '123'),
         database: configService.get('DB_DBs', 'desafio_back_end'),
-        entities: [],
+        entities: [__dirname + '//**/*.entity{.js,.ts}'],
         synchronize: true,
       })
-    }),
+    }), 
     TodoModule,
   ],
   controllers: [],
