@@ -17,12 +17,7 @@ async create(@Body() body) {
     return await this.todoService.create(body);
 }
 
-// Método para mostrar um item específico pelo ID
-// @Get(':id')
-// async show(@Param('id', new ParseUUIDPipe()) id: string) {
-//     return await this.todoService.findOneOrFail(id);
-// }
-
+// Método para listar um item específico pelo ID
 @Get(':id')
 async show(@Param('id') id: string) {
     console.log(`Fetching todo with id: ${id}`);  // Log para depuração

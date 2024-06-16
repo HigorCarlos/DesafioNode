@@ -2,6 +2,7 @@ import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { TodoModule } from './app/todo/todo.module';
+import { TagModule } from './app/todo/tag.module';
 
 @Module({
   imports: [
@@ -19,7 +20,7 @@ import { TodoModule } from './app/todo/todo.module';
         synchronize: true,
       })
     }), 
-    TodoModule,
+    TodoModule, TagModule,
   ],
   controllers: [],
   providers: [],
