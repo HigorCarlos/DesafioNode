@@ -1,9 +1,10 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { TodoModule } from './app/todo/todo.module';
-import { TagModule } from './app/todo/tag.module';
-
+import { TodoModule } from './app/todo/models/todo.module';
+import { TagModule } from './app/todo/models/tag.module';
+import { UserModule } from './app/todo/models/user.module';
+import { UserEntity } from './app/todo/entity/user.entity';
 @Module({
   imports: [
     TypeOrmModule.forRootAsync({
@@ -19,8 +20,9 @@ import { TagModule } from './app/todo/tag.module';
         entities: [__dirname + '//**/*.entity{.js,.ts}'],
         synchronize: true,
       })
-    }), 
-    TodoModule, TagModule,
+    }),
+    TypeOrmModule.forFeature([UserEntity]),
+    TodoModule, TagModule, UserModule, 
   ],
   controllers: [],
   providers: [],

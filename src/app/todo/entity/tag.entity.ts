@@ -1,7 +1,9 @@
-import { Column, CreateDateColumn, DeleteDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import { Column, CreateDateColumn, DeleteDateColumn, Entity, ManyToOne, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import { TodoEntity } from "./todo.entity";
 
 @Entity({ name: 'tags'})
 export class TagEntity {
+    
     @PrimaryGeneratedColumn()
     id: string;
 
@@ -19,4 +21,7 @@ export class TagEntity {
 
     @DeleteDateColumn({ name: 'deleted_at' })
     deleteAt: string;
-} 
+
+    @ManyToOne(() => TodoEntity, (todoentity) => todoentity.tagentity)
+TodoEntity: TodoEntity
+}

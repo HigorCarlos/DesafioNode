@@ -1,5 +1,5 @@
 import { Body, Controller, Delete, Get, HttpCode, HttpStatus, Param, ParseUUIDPipe, Post, Put } from '@nestjs/common';
-import { TagService } from './tag.service';
+import { TagService } from '../services/tag.service';
 
 @Controller('tag')
 export class TagController {

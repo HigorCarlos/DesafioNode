@@ -1,6 +1,6 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { Repository } from 'typeorm';
-import { TodoEntity } from './entity/todo.entity';
+import { TodoEntity } from '../entity/todo.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 
 @Injectable()
@@ -12,7 +12,7 @@ export class TodoService {
         @InjectRepository(TodoEntity)
         private readonly todoRepository: Repository<TodoEntity>
     ) {}
-
+ 
     async findAll() {
         return await this.todoRepository.find();
     }
