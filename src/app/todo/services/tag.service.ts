@@ -19,7 +19,6 @@ export class TagService {
 
     async findOneById(id) {
         try {
-           // console.log(`Select * From  tag with id: ${id}`); 
             return await this.tagRepository.findOneBy({id});
         } catch (error) {
             throw new NotFoundException(error.message);

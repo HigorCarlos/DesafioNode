@@ -10,8 +10,8 @@ export class UserController{
         private readonly userService: UserService,
         private readonly jwtService: JwtService,
     ) {       
-    }
-    //Registrar novo usuario
+    }  
+
     @Post('register')
     async register(
         @Body('name') name: string,
@@ -26,7 +26,7 @@ export class UserController{
             password: hashedPassword,
         });
     }
-    //Validar email e senha do usuario
+
     @Post('login')
     async login(
         @Body('email') email: string,
@@ -56,13 +56,11 @@ export class UserController{
 
     }
 
-    //Listar os usuarios cadastrados
     @Get('list')
     async index() {
         return await this.userService.findAll();
 }
 
-    //Desconectar usuario ativo
     @Post('logout')
     async logout(@Res({passthrough: true}) response: Response) {
         response.clearCookie('jwt');

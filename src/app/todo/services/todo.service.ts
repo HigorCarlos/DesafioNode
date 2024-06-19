@@ -19,7 +19,6 @@ export class TodoService {
 
     async findOneById(id) {
         try {
-           // console.log(`Select * From  todo with id: ${id}`); 
             return await this.todoRepository.findOneBy({id});
         } catch (error) {
             throw new NotFoundException(error.message);
