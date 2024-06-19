@@ -5,10 +5,19 @@ import { TodoModule } from './app/todo/models/todo.module';
 import { TagModule } from './app/todo/models/tag.module';
 import { UserModule } from './app/todo/models/user.module';
 import { UserEntity } from './app/todo/entity/user.entity';
+import { JwtModule } from '@nestjs/jwt';
+
 @Module({
   imports: [
     TypeOrmModule.forRootAsync({
-      imports: [ConfigModule.forRoot()],
+      imports: [ConfigModule.forRoot({isGlobal: true}),
+        
+        TypeOrmModule.forFeature([UserEntity]),
+        JwtModule.register( {
+          secret: 'secret',
+          signOptions: {expiresIn: '1d'}
+        }),
+      ],
       inject: [ConfigService],
       useFactory: (configService: ConfigService) => ({
         type: 'postgres',
@@ -23,6 +32,7 @@ import { UserEntity } from './app/todo/entity/user.entity';
     }),
     TypeOrmModule.forFeature([UserEntity]),
     TodoModule, TagModule, UserModule, 
+    
   ],
   controllers: [],
   providers: [],
